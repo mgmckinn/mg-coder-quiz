@@ -5,22 +5,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./assets/css/style.css">
+    <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <title>MG-Coder Quiz</title>
 </head>
 
-<nav>
+<header>
+    <h1>MG-Coder Quiz</h1>
+</header> 
+
 <body>
-<h1 class="title"<MG Coder Quiz/h1></MG>
-</nav>
-
-<div class="quiz-wrapper" id="quiz">
-        <div class="quiz-header">
-
-        
-             <h2 id="question" >Quiz Question Text</h2>
-    
-    <ul>
-        <li>
+<main class="quiz-wrapper" id="quiz">
+    <div class="quiz-header">
+<h2 id="question" >Quiz Question Text</h2>
+ <ul>
+     <li>
          <input type="radio" name="answer" id="a" class="answer">
         <label for="a" id="a_text">Question</label>
         </li>
@@ -35,11 +33,12 @@
         <li>
         <input type="radio" name="answer" id="d" class="answer">
         <label for="d" id="d_text">Question</label>
-         </li>
-    </ul>
+    </li>
+ </ul>
     <div>
 <button type="button" id="submit-button">submit</button>
 </div>
+</main>
 <script src="./assets/js/script.js"></script>
 </body>
 </html>
