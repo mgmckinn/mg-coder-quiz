@@ -1,103 +1,101 @@
-var quizData = [{
-   question: "What does CSS stand for?",
-    a: "Central Style Sheets",
-    b: "Cascading Style Sheets",
-    c: "Cascading Simple Sheets",
-    d: "Cars SUVs Sailboats",
-    correct: "b",
-  },
+//time/score 
 
-  {
-    question: "What does HTML stand for?",
-    a: "Hypertext Markup Language",
-    b: "Hypertext Markdown Language",
-    c: "Hyperloop Machine Language",
-    d: "Helicopters Terminals Motorboats Lamborginis",
-    correct: "a",
-  },
+let timeEl = document.querySelector("time");
+let timeLeft = 50;
+let pointsEl = document.querySelector("points");
 
-  {
-    question: "Which HTML attribute is used to define inline styles?",
-    a: "style",
-    b: "class",
-    c: "styles",
-    d: "font",
-    correct: "a",
-  },
+//questions 
+const questionsEl = document.querySelector("questions");
 
-  {
-    question: "Which CSS property controls the text size?",
-    a: "font-style",
-    b: "text-size",
-    c: "text-style",
-    d: "font-size",
-    correct: "d",
-  },
+let questionEl = document.querySelector("questions");
 
+let questionCount = 0;
+
+//score history
+let initalsInput = document.querySelector ("intitals");
+
+const highscoresEl = document.querySelector("highscores");
+
+let scoreListEl = document.querySelector(score-list);
+
+let scoreList = []; 
+
+
+//start quiz 
+
+const startBtn = document.querySelector("start");
+
+const ansBtn = document.querySelectorAll("button.ansBtn");
+
+const ansBtnText = document.querySelector(answera);
+
+const ansBtnText = document.querySelector(answerb);
+
+const ansBtnText = document.querySelector(answerc);
+
+const ansBtnText = document.querySelector(answerd);
+
+const submitScrBtn = document.querySelector(submit-scores);
+
+const viewScrBtn = document.querySelector(view-scores);
+
+
+const questions = [ // array of objects
   {
-    question: "What is the default value of the position property?",
-    a: "fixed",
-    b: "static",
-    c: "absolute",
-    d: "relative",
-    correct: "b",
+      // question 0
+
+      question: "What does CSS stand for?",
+      answers: ["a. Central Style Sheets", "b. Cascading Style Sheets", "c. Cascading Simple Sheets", "d. Cars SUVs Sailboats"],
+      correctAnswer: "b"
   },
+  {
+      // question a
+      question: "What does HTML stand for?",
+      answers: ["a. Hypertext Markup Language", "b. Hypertext Markdown Language", "c. Hyperloop Machine Language", "d. Helicopters Terminals Motorboats Lamborginis"],
+      correctAnswer: "a"
+  },
+  {
+      // question b
+      question: "Which HTML attribute is used to define inline styles?",
+      answers: ["a. style", "b. class ", "c. styles", "d. font"],
+      correctAnswer: "a"
+  },
+  {
+      // question c
+      question: "Which CSS property controls the text size?",
+      answers: ["a. font-style", "b. text-size", "c. text-style", "d. font-size"],
+      correctAnswer: "d"
+  },
+  {
+      // question d
+      question: "What is the default value of the position property?",
+      answers: ["a. fixed", "b. static", "c. abosolute", "d. relative"],
+      correctAnswer: "b"
+  }
 ];
 
-var quiz = document.getElementById("quiz");
-var answerEl = document.querySelectorAll("answer");
-var questionEl = document.getElementById("question");
-var a_text = document.getElementById("a_text");
-var b_text = document.getElementById("b_text");
-var c_text = document.getElementById("c_text");
-var d_text = document.getElementById("d_text");
-var submitBtn = document.getElementById("submit");
-
-let currentQuiz = 0;
-let score = 0;
-
-loadQuiz();
-
-function loadQuiz() {
-  var currentQuizData = quizData[currentQuiz];
-
-  questionEl.innerText = currentQuizData.question;
-  a_text.innerText = currentQuizData.a;
-  b_text.innerText = currentQuizData.b;
-  c_text.innerText = currentQuizData.c;
-  d_text.innerText = currentQuizData.d;
-}
-function deselectAnswer() {
-  answerEl.forEach((answerEl) => (answerEl.checked = false));
-}
-function getSelected() {let andswers = 
-answerEl.forEach(())}
-
-answerEl.forEach((answer) => {
-  if (answerEl.checked) {
-    answer = answerEl.id;
+//timer
+function setTime() {
+  let timerInterval = setInterval(function() {
+    timeLeft --;
+    timeEl.textContent = `Time left: ${timeLeft}s`
+    
+    if (timeLeft === 0 || questionCount === questions.length) {
+      clearInterval(timerInterval);
+      questionsEl.style.display = "none";
+      finalEl.style.display = "block";
+      pointsEl.textContent = timeLeft;
   }
+}, a000);
+}
 
-  return answer;
-});
+function startQuiz() {
+  
+}
 
-submitBtn.addEventListener('click', () => {
-  var answer = getSelected()
-
-  if (answer) {
-    if (answer === quizData[currentQuiz].correct) {
-      score++;
-    }
-    currentQuiz++;
-
-    if (currentQuiz < quizData.length) {
-      loadQuiz();
-    } else {
-      quiz.innerHTML = `
-      <h2>You answered ${score}/${quizData.length} question</h2> 
-
-            <button onclick="location.reload()">Reload</button>
-            `
-    }
-  }
-})
+ 
+   
+   
+   
+   
+    
