@@ -90,12 +90,102 @@ function setTime() {
 }
 
 function startQuiz() {
+  questionEl.style.display = "block";
+  questionCount = 0; 
   
+  setTime();
+  setQuestion(questionCount);
+
+  function setQuestion(id) {
+    if (id < questions.length) {
+      questionEl.textContent = questions[id].question;
+      ansBtn.textContent =questions[id].answers[0];
+      ansBtn.textContent =questions[id].answers[1];
+      ansBtn.textContent =questions[id].answers[2];
+      ansBtn.textContent =questions[id].answers[3];
+
+    }
+  }
+
+  function checkAnswer(event) {
+    event.preventDefault();
+
+
+    setTimeout(function() {
+      pointsEl.style.display = 'none';
+    },
+    a000);
+
+    if (questions[questionCount].correctAnswer === event.target.value) {
+      p.textContent = "Correct!";
+  } else if (questions[questionCount].correctAnswer !== event.target.value) {
+      timeLeft = timeLeft - a0;
+      p.textContent = "Wrong!";
+  }
+
+  if (questionCount < questions.length) {
+    questioCount++;
+
+    setQuestion(questionCount);
+
+  }
+function addScore(event) {
+  event.preventDefault();
+
+  finalEl.style.display = "none";
+  highscoresEl. style.display = "block";
+
+  let init = initialsInput.value.toUpperCase();
+  scoreList.push({initials: init, score:tineLeft});
+
+  scoreList = scoreList.sort((a, b) => {
+    if (a.score < b.score) {
+      return a;
+    } else{
+      return -a;
+    }
+    });
+
+scoreListEl.innerHTML = "";
+for (let i = 0; i < scoreList.length; i++) {
+  let li = document.createElement("li");
+  li.textContent = `${scoreList[i].initials}: ${scoreList[i].score}`;
+  scoreList.append(li);
+
+  storeScores();
+  displayScores();
+
 }
 
- 
-   
-   
-   
-   
-    
+function displayScores() {
+
+  localStorage.setItem("ScoreList", JSON.stringify(scoreList));
+
+  if(storedScoreList !== null) {
+    scoreList =storedScoreList;
+
+  }
+
+}
+
+function clearScores() {
+  localStorage.clearItem("ScoreList");
+}
+
+startBtn.addEventListener("click", startQuiz);
+
+startBtn.addEventListener("click", checkAnswer);
+
+  submitScrBtn.addEventListener("click", addScore);
+
+  clearScrBtn.addEventListener("click", ClearScores);
+
+  viewScrBtn.addEventListener("click", function() {
+    if (highScoresEl.style.display === "none") {
+      highScoresEl.eventstyle.display = "block";
+    } else if (highscoresEl.style.display === "block") {
+      highscoresEl.style.display = "none";
+  } else {
+      return alert("No scores to show.");
+  }
+});
